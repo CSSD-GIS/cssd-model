@@ -2,7 +2,7 @@ import os
 
 
 class DatasetCatalog:
-    DATA_DIR = 'datasets'
+    DATA_DIR = 'D:\CSSD\src\SSD\ssd\data\datasets'
     DATASETS = {
         'voc_2007_train': {
             "data_dir": "VOC2007",

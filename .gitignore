@@ -7,6 +7,10 @@ ext/torch_extension.egg-info/
 dist/
 *.egg-info
 
+# jpg and xml data
+ssd/data/datasets/*
+
+outputs/*
 # pytorch/python/numpy formats
 *.pth
 *.pkl

@@ -4,7 +4,11 @@ import warnings
 import torch
 import torchvision
 
-if torchvision.__version__ >= '0.3.0':
+# 源码判断有问题，最新的torchvision.__version__ = "0.10.0+cpu",判别式永远为false
+# '0.10.0' 是小于 '0.3.0'的
+# if torchvision.__version__ >= '0.3.0':
+
+if torchvision.__version__[:6] <= '0.3.0':
     _nms = torchvision.ops.nms
 else:
     warnings.warn('No NMS is available. Please upgrade torchvision to 0.3.0+')

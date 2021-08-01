@@ -1,0 +1,8 @@
+MODEL:
+  DEVICE: "cpu"
+  NUM_CLASSES: 5
+INPUT:
+  IMAGE_SIZE: 300
+DATASETS:
+  TRAIN: ("voc_2007_trainval",)
+  TEST: ("voc_2007_test",)

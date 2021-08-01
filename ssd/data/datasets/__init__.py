@@ -3,10 +3,12 @@ from torch.utils.data import ConcatDataset
 from ssd.config.path_catlog import DatasetCatalog
 from .voc import VOCDataset
 from .coco import COCODataset
+from .crmd import CRMDDataset
 
 _DATASETS = {
     'VOCDataset': VOCDataset,
     'COCODataset': COCODataset,
+    'CRMDDataset': CRMDDataset,
 }
 
 
