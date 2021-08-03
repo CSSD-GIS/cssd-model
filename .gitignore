@@ -9,7 +9,7 @@ dist/
 
 # jpg and xml data
 ssd/data/datasets/*
-
+demo/*
 outputs/*
 # pytorch/python/numpy formats
 *.pth
