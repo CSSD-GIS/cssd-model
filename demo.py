@@ -16,7 +16,6 @@ from ssd.modeling.detector import build_detection_model
 from ssd.utils import mkdir
 from ssd.utils.checkpoint import CheckPointer
 
-
 @torch.no_grad()
 def run_demo(cfg, ckpt, score_threshold, images_dir, output_dir, dataset_type):
     if dataset_type == "voc":
@@ -45,6 +44,9 @@ def run_demo(cfg, ckpt, score_threshold, images_dir, output_dir, dataset_type):
         image_name = os.path.basename(image_path)
 
         image = np.array(Image.open(image_path).convert("RGB"))
+        print(type(image))
+        print(image.shape)
+        # image.reshape()
         height, width = image.shape[:2]
         images = transforms(image)[0].unsqueeze(0)
         load_time = time.time() - start
@@ -71,6 +73,8 @@ def run_demo(cfg, ckpt, score_threshold, images_dir, output_dir, dataset_type):
         print('({:04d}/{:04d}) {}: {}'.format(i + 1, len(image_paths), image_name, meters))
 
         drawn_image = draw_boxes(image, boxes, labels, scores, class_names).astype(np.uint8)
+        print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        print(type(drawn_image))
         Image.fromarray(drawn_image).save(os.path.join(output_dir, image_name))
 
 
@@ -78,15 +82,15 @@ def main():
     parser = argparse.ArgumentParser(description="SSD Demo.")
     parser.add_argument(
         "--config-file",
-        default="",
+        default="./configs/config512.yaml",
         metavar="FILE",
         help="path to config file",
         type=str,
     )
     parser.add_argument("--ckpt", type=str, default=None, help="Trained weights.")
     parser.add_argument("--score_threshold", type=float, default=0.7)
-    parser.add_argument("--images_dir", default='demo', type=str, help='Specify a image dir to do prediction.')
-    parser.add_argument("--output_dir", default='demo/result', type=str, help='Specify a image dir to save predicted images.')
+    parser.add_argument("--images_dir", default='./demo', type=str, help='Specify a image dir to do prediction.')
+    parser.add_argument("--output_dir", default='./demo/result', type=str, help='Specify a image dir to save predicted images.')
     parser.add_argument("--dataset_type", default="voc", type=str, help='Specify dataset type. Currently support voc and coco.')
 
     parser.add_argument(
@@ -109,11 +113,11 @@ def main():
     print("Running with config:\n{}".format(cfg))
 
     run_demo(cfg=cfg,
-             ckpt=args.ckpt,
-             score_threshold=args.score_threshold,
-             images_dir=args.images_dir,
-             output_dir=args.output_dir,
-             dataset_type=args.dataset_type)
+             ckpt=None,
+             score_threshold=0.7,
+             images_dir="./demo",
+             output_dir="demo/result",
+             dataset_type="voc")
 
 
 if __name__ == '__main__':

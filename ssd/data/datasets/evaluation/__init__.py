@@ -20,5 +20,7 @@ def evaluate(dataset, predictions, output_dir, **kwargs):
         return voc_evaluation(**args)
     elif isinstance(dataset, COCODataset):
         return coco_evaluation(**args)
+    elif isinstance(dataset, COCDataset):
+        return voc_evaluation(**args)
     else:
         raise NotImplementedError

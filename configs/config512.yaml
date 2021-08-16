@@ -13,8 +13,8 @@ MODEL:
 INPUT:
   IMAGE_SIZE: 512
 DATASETS:
-  TRAIN: ("voc_2007_trainval",)
-  TEST: ("voc_2007_test", )
+  TRAIN: ("coc_770_trainval",)
+  TEST: ("coc_770_test", )
 SOLVER:
   MAX_ITER: 50000
   LR_STEPS: [80000, 100000]

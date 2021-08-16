@@ -4,11 +4,13 @@ from ssd.config.path_catlog import DatasetCatalog
 from .voc import VOCDataset
 from .coco import COCODataset
 from .crmd import CRMDDataset
+from .coc import COCDataset
 
 _DATASETS = {
     'VOCDataset': VOCDataset,
     'COCODataset': COCODataset,
     'CRMDDataset': CRMDDataset,
+    'COCDataset': COCDataset,
 }
 
 

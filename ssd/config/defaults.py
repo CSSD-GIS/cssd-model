@@ -87,7 +87,7 @@ _C.SOLVER.WARMUP_ITERS = 500
 # Specific test options
 # ---------------------------------------------------------------------------- #
 _C.TEST = CN()
-_C.TEST.NMS_THRESHOLD = 0.35 #0.45
+_C.TEST.NMS_THRESHOLD = 0.45 #0.45
 _C.TEST.CONFIDENCE_THRESHOLD = 0.01
 _C.TEST.MAX_PER_CLASS = 5
 _C.TEST.MAX_PER_IMAGE = 100

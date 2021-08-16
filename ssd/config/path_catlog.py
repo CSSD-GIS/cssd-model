@@ -4,6 +4,22 @@ import os
 class DatasetCatalog:
     DATA_DIR = 'D:\CSSD\src\SSD\ssd\data\datasets'
     DATASETS = {
+        'coc_770_train': {
+            "data_dir": "COC770",
+            "split": "train"
+        },
+        'coc_770_val': {
+            "data_dir": "COC770",
+            "split": "val"
+        },
+        'coc_770_trainval': {
+            "data_dir": "COC770",
+            "split": "trainval"
+        },
+        'coc_770_test': {
+            "data_dir": "COC770",
+            "split": "test"
+        },
         'voc_2007_train': {
             "data_dir": "VOC2007",
             "split": "train"
@@ -78,5 +94,17 @@ class DatasetCatalog:
                 ann_file=os.path.join(coco_root, attrs["ann_file"]),
             )
             return dict(factory="COCODataset", args=args)
+        # 自定义数据集
+        elif "coc" in name:
+            coc_root = DatasetCatalog.DATA_DIR
+            if 'COC_ROOT' in os.environ:
+                coc_root = os.environ['COC_ROOT']
+
+            attrs = DatasetCatalog.DATASETS[name]
+            args = dict(
+                data_dir=os.path.join(coc_root, attrs["data_dir"]),
+                split=attrs["split"],
+            )
+            return dict(factory="COCDataset", args=args)
 
         raise RuntimeError("Dataset not available: {}".format(name))
