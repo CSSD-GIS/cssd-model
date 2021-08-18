@@ -5,7 +5,6 @@ from io import BytesIO
 
 import torch
 from PIL import Image
-from vizer.draw import draw_boxes
 
 from ssd.config import cfg
 from ssd.data.datasets import COCODataset, VOCDataset
@@ -17,6 +16,7 @@ from ssd.data.transforms import build_transforms
 from ssd.modeling.detector import build_detection_model
 from ssd.utils import mkdir
 from ssd.utils.checkpoint import CheckPointer
+from ssd.utils.draw import draw_boxes
 from concurrent import futures
 
 import grpc
@@ -91,8 +91,12 @@ def predict(image_bytes):
     scores = scores[indices]
 
     drawn_image = draw_boxes(image, boxes, labels, scores, class_names).astype(np.uint8)
+    # save image to localstorage
     Image.fromarray(drawn_image).save(os.path.join("D:/", "1234.jpg"))
-    return drawn_image.tobytes()
+
+    drawn_image = cv.cvtColor(drawn_image, cv.COLOR_RGB2BGR)
+    success, encoded_image = cv.imencode(".jpg", drawn_image)
+    return encoded_image.tobytes()
 
 
 if __name__ == '__main__':
