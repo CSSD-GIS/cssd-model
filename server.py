@@ -29,9 +29,27 @@ transforms =  None
 
 class Detection(detection_proto_pb2_grpc.DetectionServicer):
     def Predict(self, request, context):
-        detected_image = predict(request.originImage)
+        detected_image, labels = predict(request.originImage)
+        labels_sum = num_to_class(labels)
         print("检测完毕.")
-        return detection_proto_pb2.DetectionResponse(predictedImage = detected_image)
+        return detection_proto_pb2.DetectionResponse(predictedImage = detected_image, predictedResults = labels_sum)
+
+def num_to_class(labels):
+    class_names = VOCDataset.class_names
+    labels_sum = [0, 0, 0, 0, 0]
+    for item in labels:
+        if item == 0:
+            labels_sum[0] += 1
+        elif item == 1:
+            labels_sum[1] += 1
+        elif item == 2:
+            labels_sum[2] += 1
+        elif item == 3:
+            labels_sum[3] += 1
+        elif item == 4:
+            labels_sum[4] += 1
+    
+    return labels_sum
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
@@ -85,18 +103,18 @@ def predict(image_bytes):
     result = result.resize((width, height)).to(torch.device("cpu")).numpy()
     boxes, labels, scores = result['boxes'], result['labels'], result['scores']
 
-    indices = scores > 0.7
+    indices = scores > 0.6
     boxes = boxes[indices]
     labels = labels[indices]
     scores = scores[indices]
-
+    
     drawn_image = draw_boxes(image, boxes, labels, scores, class_names).astype(np.uint8)
     # save image to localstorage
     # Image.fromarray(drawn_image).save(os.path.join("D:/", "1234.jpg"))
 
     drawn_image = cv.cvtColor(drawn_image, cv.COLOR_RGB2BGR)
     success, encoded_image = cv.imencode(".jpg", drawn_image)
-    return encoded_image.tobytes()
+    return encoded_image.tobytes(), labels
 
 
 if __name__ == '__main__':

@@ -21,4 +21,5 @@ message DetectionRequest {
 
 message DetectionResponse {
     bytes predictedImage = 1;
+    repeated int32 predictedResults = 2;
 }

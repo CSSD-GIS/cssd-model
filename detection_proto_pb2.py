@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\032io.grpc.examples.detectionB\rDetctionProtoP\001\242\002\003HLW',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x15\x64\x65tection_proto.proto\x12\tdetection\"\'\n\x10\x44\x65tectionRequest\x12\x13\n\x0boriginImage\x18\x01 \x01(\x0c\"+\n\x11\x44\x65tectionResponse\x12\x16\n\x0epredictedImage\x18\x01 \x01(\x0c\x32S\n\tDetection\x12\x46\n\x07Predict\x12\x1b.detection.DetectionRequest\x1a\x1c.detection.DetectionResponse\"\x00\x42\x33\n\x1aio.grpc.examples.detectionB\rDetctionProtoP\x01\xa2\x02\x03HLWb\x06proto3'
+  serialized_pb=b'\n\x15\x64\x65tection_proto.proto\x12\tdetection\"\'\n\x10\x44\x65tectionRequest\x12\x13\n\x0boriginImage\x18\x01 \x01(\x0c\"E\n\x11\x44\x65tectionResponse\x12\x16\n\x0epredictedImage\x18\x01 \x01(\x0c\x12\x18\n\x10predictedResults\x18\x02 \x03(\x05\x32S\n\tDetection\x12\x46\n\x07Predict\x12\x1b.detection.DetectionRequest\x1a\x1c.detection.DetectionResponse\"\x00\x42\x33\n\x1aio.grpc.examples.detectionB\rDetctionProtoP\x01\xa2\x02\x03HLWb\x06proto3'
 )
 
 
@@ -72,6 +72,13 @@ _DETECTIONRESPONSE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='predictedResults', full_name='detection.DetectionResponse.predictedResults', index=1,
+      number=2, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -85,7 +92,7 @@ _DETECTIONRESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=77,
-  serialized_end=120,
+  serialized_end=146,
 )
 
 DESCRIPTOR.message_types_by_name['DetectionRequest'] = _DETECTIONREQUEST
@@ -116,8 +123,8 @@ _DETECTION = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=122,
-  serialized_end=205,
+  serialized_start=148,
+  serialized_end=231,
   methods=[
   _descriptor.MethodDescriptor(
     name='Predict',
