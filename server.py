@@ -92,7 +92,7 @@ def predict(image_bytes):
 
     drawn_image = draw_boxes(image, boxes, labels, scores, class_names).astype(np.uint8)
     # save image to localstorage
-    Image.fromarray(drawn_image).save(os.path.join("D:/", "1234.jpg"))
+    # Image.fromarray(drawn_image).save(os.path.join("D:/", "1234.jpg"))
 
     drawn_image = cv.cvtColor(drawn_image, cv.COLOR_RGB2BGR)
     success, encoded_image = cv.imencode(".jpg", drawn_image)
