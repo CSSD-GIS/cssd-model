@@ -8,7 +8,7 @@ import torchvision
 # '0.10.0' 是小于 '0.3.0'的
 # if torchvision.__version__ >= '0.3.0':
 
-if torchvision.__version__ >= '0.3.0':
+if torchvision.__version__ <= '0.3.0':
     _nms = torchvision.ops.nms
 else:
     warnings.warn('No NMS is available. Please upgrade torchvision to 0.3.0+')

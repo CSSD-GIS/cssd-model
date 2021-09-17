@@ -89,7 +89,7 @@ def main():
         type=str,
     )
     parser.add_argument("--ckpt", type=str, default=None, help="Trained weights.")
-    parser.add_argument("--score_threshold", type=float, default=0.7)
+    parser.add_argument("--score_threshold", type=float, default=0.5)
     parser.add_argument("--images_dir", default='./demo', type=str, help='Specify a image dir to do prediction.')
     parser.add_argument("--output_dir", default='./demo/result', type=str, help='Specify a image dir to save predicted images.')
     parser.add_argument("--dataset_type", default="voc", type=str, help='Specify dataset type. Currently support voc and coco.')
@@ -115,7 +115,7 @@ def main():
 
     run_demo(cfg=cfg,
              ckpt=None,
-             score_threshold=0.7,
+             score_threshold=0.5,
              images_dir="./demo",
              output_dir="demo/result",
              dataset_type="voc")
