@@ -5,7 +5,7 @@ from ssd.modeling import registry
 from .deconv_module import DeconvolutionModule
 
 
-@registry.DECODERS.register('DSSDDecoder')
+@registry.DECODERS.register('SSDDecoder')
 class SSDDecoder(nn.Module):
     def __init__(self, cfg):
         super().__init__()
@@ -17,7 +17,7 @@ class SSDDecoder(nn.Module):
 
         self.decode_layers = nn.ModuleList()
         cin_deconv = channels_backbone[-1]
-        for level, (cin_deconv, out) in enumerate(zip(channels_backbone[::-1][1:], channels_decoder[1:])):
+        for level, (cin_conv, cout) in enumerate(zip(channels_backbone[::-1][1:], channels_decoder[1:])):
             self.decode_layers.append(DeconvolutionModule(cin_conv=cin_conv, cin_deconv=cin_deconv, cout=cout,
             deconv_kernel_size=deconv_kernel_size[level], elementwise_type=elementwise_type))
 

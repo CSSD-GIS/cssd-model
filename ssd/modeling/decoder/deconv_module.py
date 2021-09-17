@@ -8,7 +8,7 @@ class DeconvolutionModule(nn.Module):
         self.conv_layer = nn.Sequential(
             nn.Conv2d(cin_conv, cout, kernel_size=3, stride=1, padding=1, dilation=1, groups=1),
             norm_layer(cout),
-            nn.Relu(inplace=True),
+            nn.ReLU(inplace=True),
             nn.Conv2d(cout, cout, kernel_size=3, stride=1, padding=1, dilation=1, groups=1),
             norm_layer(cout),
         )
@@ -22,7 +22,7 @@ class DeconvolutionModule(nn.Module):
         if elementwise_type in ["sum", "prod"]:
             self.elementwise_type = elementwise_type
         else:
-            raise.RuntimeError("elementwise type incorrect!")
+            raise RuntimeError("elementwise type incorrect!")
 
         self.relu = nn.ReLU(inplace=True)
         self.reset_parameters()
@@ -40,4 +40,3 @@ class DeconvolutionModule(nn.Module):
             return self.relu(y_deconv + y_conv)
         elif self.elementwise_type == "prod":
             return self.relu(y_deconv + y_conv)
-            

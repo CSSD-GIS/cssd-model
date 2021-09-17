@@ -21,6 +21,16 @@ _C.MODEL.BACKBONE.NAME = 'vgg'
 _C.MODEL.BACKBONE.OUT_CHANNELS = (512, 1024, 512, 256, 256, 256)
 _C.MODEL.BACKBONE.PRETRAINED = True
 
+# ---------------------------------------------------------------------------- #
+# Decoder
+# ---------------------------------------------------------------------------- #
+_C.MODEL.DECODER = CN()
+_C.MODEL.DECODER.WITH_DECODER = True
+_C.MODEL.DECODER.NAME = 'SSDDecoder'
+_C.MODEL.DECODER.OUT_CHANNELS = [256, 256, 256, 256, 512, 1024, 512]
+_C.MODEL.DECODER.DECONV_KERNEL_SIZE = [3, 1, 2, 2, 2, 2, 2]
+_C.MODEL.DECODER.ELMW_TYPE = "prod"
+
 # -----------------------------------------------------------------------------
 # PRIORS
 # -----------------------------------------------------------------------------

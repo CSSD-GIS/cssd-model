@@ -6,8 +6,8 @@ MODEL:
   DECODER:
     NAME: 'SSDDecoder'
     OUT_CHANNELS: [256, 256, 256, 256, 512, 1024, 512]
-    DECODER_KERNEL_SIZE: [3, 1, 2, 2, 2, 2, 2]
-    DECODER_ELMW_TYPE: "prod"
+    DECONV_KERNEL_SIZE: [2, 2, 2, 2, 2, 2, 2]
+    ELMW_TYPE: "prod"
   PRIORS:
     FEATURE_MAPS: [64, 32, 16, 8, 4, 2, 1]
     STRIDES: [8, 16, 32, 64, 128, 256, 512]
