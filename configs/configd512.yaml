@@ -4,7 +4,8 @@ MODEL:
   BACKBONE:
     OUT_CHANNELS: (512, 1024, 512, 256, 256, 256, 256)
   DECODER:
-    NAME: 'SSDDecoder'
+    # NAME: 'SSDDecoder'
+    NAME: 'FPN'
     OUT_CHANNELS: [256, 256, 256, 256, 512, 1024, 512]
     DECONV_KERNEL_SIZE: [2, 2, 2, 2, 2, 2, 2]
     ELMW_TYPE: "prod"
