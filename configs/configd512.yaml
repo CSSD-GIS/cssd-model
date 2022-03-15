@@ -4,8 +4,7 @@ MODEL:
   BACKBONE:
     OUT_CHANNELS: (512, 1024, 512, 256, 256, 256, 256)
   DECODER:
-    # NAME: 'SSDDecoder'
-    NAME: 'FPN'
+    NAME: 'SSDDecoder'
     OUT_CHANNELS: [256, 256, 256, 256, 512, 1024, 512]
     DECONV_KERNEL_SIZE: [2, 2, 2, 2, 2, 2, 2]
     ELMW_TYPE: "prod"
@@ -19,11 +18,11 @@ MODEL:
 INPUT:
   IMAGE_SIZE: 512
 DATASETS:
-  TRAIN: ("coc_770_trainval",)
-  TEST: ("coc_770_test", )
+  TRAIN: ("voc_2007_trainval",)
+  TEST: ("voc_2007_test", )
 SOLVER:
-  MAX_ITER: 50000
+  MAX_ITER: 80000
   LR_STEPS: [80000, 100000]
   GAMMA: 0.1
-  BATCH_SIZE: 24
+  BATCH_SIZE: 16
   LR: 1e-3

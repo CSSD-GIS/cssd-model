@@ -75,7 +75,7 @@ def load_model(cfg, ckpt):
 
 def init():
     global model, transforms
-    config_file = "./configs/config512.yaml"
+    config_file = "./configs/configd512.yaml"
     cfg.merge_from_file(config_file)
     cfg.freeze()
     print("Loaded configuration file {}".format(config_file))
