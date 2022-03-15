@@ -57,6 +57,7 @@ def serve():
     server.add_insecure_port('[::]:9001')
     server.start()
     server.wait_for_termination()
+    print('listening on [::]9001')
 
 @torch.no_grad()
 def load_model(cfg, ckpt):
