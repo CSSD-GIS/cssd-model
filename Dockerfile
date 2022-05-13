@@ -1,13 +1,14 @@
 FROM pytorch/pytorch:latest
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-RUN apt-get update
-RUN apt-get install libgl1-mesa-glx -y
+RUN apt-get update \
+    && apt-get install libgl1-mesa-glx libglib2.0-dev -y \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt ./
-RUN pip3 install --no-cache-dir -r requirements.txt 
+COPY ./requirements.txt .
+RUN pip3 install -r requirements.txt
 
-COPY . .
+EXPOSE 9001
 
 CMD [ "python3", "./server.py" ]
