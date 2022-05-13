@@ -1,11 +1,13 @@
-FROM python:3
+FROM pytorch/pytorch:latest
 
 WORKDIR /usr/src/app
 
+RUN apt-get update
+RUN apt-get install libgl1-mesa-glx -y
+
 COPY requirements.txt ./
-RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package \
-    && pip install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt 
 
 COPY . .
 
-CMD [ "python", "./server.py" ]
+CMD [ "python3", "./server.py" ]
